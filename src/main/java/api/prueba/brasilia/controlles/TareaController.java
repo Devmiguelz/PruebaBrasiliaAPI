@@ -12,25 +12,25 @@ import java.util.List;
 public class TareaController {
 
     @Autowired
-    private TareaService _tareaService;
+    private TareaService tareaService;
 
     @PostMapping
     public Tarea guardarTarea(@PathVariable Long usuarioId, @RequestBody Tarea tarea) {
-        return _tareaService.guardarTarea(usuarioId, tarea);
+        return tareaService.guardarTarea(usuarioId, tarea);
     }
 
     @GetMapping
-    public List<Tarea> buscarTareasPorUsuarioId(@PathVariable Long userId) {
-        return _tareaService.buscarTareasPorUsuarioId(userId);
+    public List<Tarea> buscarTareasPorUsuarioId(@PathVariable Long usuarioId) {
+        return tareaService.buscarTareasPorUsuarioId(usuarioId);
     }
 
     @PutMapping("/{tareaId}/estado")
     public Tarea actualizarEstadoTarea(@PathVariable Long usuarioId, @PathVariable Long tareaId, @RequestParam boolean completa) {
-        return _tareaService.actualizarEstadoTarea(usuarioId, tareaId, completa);
+        return tareaService.actualizarEstadoTarea(usuarioId, tareaId, completa);
     }
 
     @DeleteMapping("/{tareaId}")
     public void eliminarTarea(@PathVariable Long usuarioId, @PathVariable Long tareaId) {
-        _tareaService.eliminarTarea(usuarioId, tareaId);
+        tareaService.eliminarTarea(usuarioId, tareaId);
     }
 }

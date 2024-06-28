@@ -12,26 +12,26 @@ import java.util.List;
 public class UsuarioController {
 
     @Autowired
-    private UsuarioService _usuarioService;
+    private UsuarioService usuarioRepository;
 
     @GetMapping
     public List<Usuario> listarUsuarios() {
-        return _usuarioService.listarUsuarios();
+        return usuarioRepository.listarUsuarios();
     }
 
     @GetMapping("/{id}")
     public Usuario buscarUsuarioPorId(@PathVariable Long id) {
-        return _usuarioService.buscarUsuarioPorId(id);
+        return usuarioRepository.buscarUsuarioPorId(id);
     }
 
     @PostMapping
     public Usuario guardarUsuario(@RequestBody Usuario usuario) {
-        return _usuarioService.guardarUsuario(usuario);
+        return usuarioRepository.guardarUsuario(usuario);
     }
 
     @DeleteMapping("/{id}")
     public void elminarUsuario(@PathVariable Long id) {
-        _usuarioService.elminarUsuario(id);
+        usuarioRepository.elminarUsuario(id);
     }
     
 }

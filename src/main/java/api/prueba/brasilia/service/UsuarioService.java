@@ -1,5 +1,6 @@
 package api.prueba.brasilia.service;
 
+import api.prueba.brasilia.entity.Tarea;
 import api.prueba.brasilia.entity.Usuario;
 import api.prueba.brasilia.exception.RecursoNoEncontrado;
 import api.prueba.brasilia.repository.UsuarioRepository;
@@ -12,23 +13,27 @@ import java.util.List;
 public class UsuarioService {
 
     @Autowired
-    private UsuarioRepository _usuarioRepository;
+    private UsuarioRepository usuarioRepository;
 
     public Usuario guardarUsuario(Usuario user) {
-        return _usuarioRepository.save(user);
+        return usuarioRepository.save(user);
     }
 
     public List<Usuario> listarUsuarios() {
-        return _usuarioRepository.findAll();
+        return usuarioRepository.findAll();
     }
 
     public Usuario buscarUsuarioPorId(Long id) {
-        return _usuarioRepository.findById(id)
+        return usuarioRepository.findById(id)
                 .orElseThrow(() -> new RecursoNoEncontrado("Usuario no encontrado."));
     }
 
     public void elminarUsuario(Long id) {
-        _usuarioRepository.deleteById(id);
+        Usuario usuario = usuarioRepository.findById(id).orElse(null);
+        if (usuario == null) {
+            throw new RecursoNoEncontrado("Usuario no encontrado.");
+        }
+        usuarioRepository.deleteById(id);
     }
 
 }
