@@ -8,7 +8,7 @@ public class AppConstants {
     public static final String TAREA_NO_USUARIO = "La tarea no pertenece al usuario.";
 
     // Constantes para validaciones
-    public static final String PROPIEDAD_REQUERIDA = "% es requerida.";
+    public static final String PROPIEDAD_REQUERIDA = " es requerida.";
     public static final String ERROR_INTERNO_SERVIDOR = "Error interno del servidor.";
-    public static final String LONGITUD_MIN_MAX = "La longitud del nombre completo debe estar entre 2 y 100 caracteres.";
+    public static final String LONGITUD_MIN_MAX = " la longitud del nombre completo debe estar entre 2 y 100 caracteres.";
 }

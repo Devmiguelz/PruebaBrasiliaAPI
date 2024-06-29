@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class UsuarioCrearDto {
 
-    @NotNull(message = AppConstants.PROPIEDAD_REQUERIDA)
-    @Size(min = 2, max = 100, message = AppConstants.LONGITUD_MIN_MAX)
+    @NotNull(message = "NombreUsuario" + AppConstants.PROPIEDAD_REQUERIDA)
+    @Size(min = 2, max = 100, message = "NombreUsuario" + AppConstants.LONGITUD_MIN_MAX)
     public String NombreUsuario;
 }

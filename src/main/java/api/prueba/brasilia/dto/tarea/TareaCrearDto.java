@@ -12,11 +12,11 @@ import lombok.Setter;
 @Setter
 public class TareaCrearDto {
 
-    @NotNull(message = AppConstants.PROPIEDAD_REQUERIDA)
-    @Size(min = 2, max = 100, message = AppConstants.LONGITUD_MIN_MAX)
+    @NotNull(message = "Titulo" + AppConstants.PROPIEDAD_REQUERIDA)
+    @Size(min = 2, max = 100, message = "Titulo" + AppConstants.LONGITUD_MIN_MAX)
     private String Titulo;
 
-    @NotNull(message = AppConstants.PROPIEDAD_REQUERIDA)
-    @Size(min = 2, max = 100, message = AppConstants.LONGITUD_MIN_MAX)
+    @NotNull(message = "Descripcion" + AppConstants.PROPIEDAD_REQUERIDA)
+    @Size(min = 2, max = 100, message = "Descripcion" + AppConstants.LONGITUD_MIN_MAX)
     private String Descripcion;
 }
