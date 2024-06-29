@@ -1,7 +1,6 @@
 package api.prueba.brasilia.dto.usuario;
 
 import api.prueba.brasilia.dto.tarea.TareaListarDto;
-import api.prueba.brasilia.entity.Tarea;
 import lombok.Getter;
 import lombok.Setter;
 
