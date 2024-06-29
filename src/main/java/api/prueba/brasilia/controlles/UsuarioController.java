@@ -30,17 +30,17 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioListarDto> buscarUsuarioPorId(@NotNull(message = AppConstants.PROPIEDAD_REQUERIDA) @PathVariable Long id) {
+    public ResponseEntity<UsuarioListarDto> buscarUsuarioPorId(@PathVariable Long id) {
         return new ResponseEntity<>(usuarioRepository.buscarUsuarioPorId(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<UsuarioListarDto> guardarUsuario(@Valid @RequestBody UsuarioCrearDto usuario) {
+    public ResponseEntity<UsuarioListarDto> guardarUsuario(@RequestBody @Valid UsuarioCrearDto usuario) {
         return new ResponseEntity<>(usuarioRepository.guardarUsuario(usuario), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> elminarUsuario(@NotNull(message = AppConstants.PROPIEDAD_REQUERIDA) @PathVariable Long id) {
+    public ResponseEntity<Boolean> elminarUsuario(@PathVariable Long id) {
         return new ResponseEntity<>(usuarioRepository.elminarUsuario(id), HttpStatus.OK);
     }
     

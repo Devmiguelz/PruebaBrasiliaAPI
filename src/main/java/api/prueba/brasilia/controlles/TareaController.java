@@ -25,7 +25,7 @@ public class TareaController {
     }
 
     @PostMapping
-    public ResponseEntity<TareaListarDto> guardarTarea(@NotNull(message = AppConstants.PROPIEDAD_REQUERIDA) @PathVariable Long usuarioId, @Valid @RequestBody TareaCrearDto tarea) {
+    public ResponseEntity<TareaListarDto> guardarTarea(@NotNull(message = AppConstants.PROPIEDAD_REQUERIDA) @PathVariable Long usuarioId, @RequestBody @Valid TareaCrearDto tarea) {
         return new ResponseEntity<>(tareaService.guardarTarea(usuarioId, tarea), HttpStatus.OK);
     }
 
@@ -35,12 +35,12 @@ public class TareaController {
     }
 
     @PutMapping("/{tareaId}/estado")
-    public ResponseEntity<TareaListarDto> actualizarEstadoTarea(@NotNull(message = AppConstants.PROPIEDAD_REQUERIDA) @PathVariable Long usuarioId, @NotNull(message = AppConstants.PROPIEDAD_REQUERIDA) @PathVariable Long tareaId, @RequestParam boolean completa) {
+    public ResponseEntity<TareaListarDto> actualizarEstadoTarea(@NotNull(message = AppConstants.PROPIEDAD_REQUERIDA) @PathVariable Long usuarioId, @PathVariable Long tareaId, @RequestParam boolean completa) {
         return new ResponseEntity<>(tareaService.actualizarEstadoTarea(usuarioId, tareaId, completa), HttpStatus.OK);
     }
 
     @DeleteMapping("/{tareaId}")
-    public ResponseEntity<Boolean> eliminarTarea(@NotNull(message = AppConstants.PROPIEDAD_REQUERIDA) @PathVariable Long usuarioId,@NotNull(message = AppConstants.PROPIEDAD_REQUERIDA) @PathVariable Long tareaId) {
+    public ResponseEntity<Boolean> eliminarTarea(@NotNull(message = AppConstants.PROPIEDAD_REQUERIDA) @PathVariable Long usuarioId, @PathVariable Long tareaId) {
         return new ResponseEntity<>(tareaService.eliminarTarea(usuarioId, tareaId), HttpStatus.OK);
     }
 }
