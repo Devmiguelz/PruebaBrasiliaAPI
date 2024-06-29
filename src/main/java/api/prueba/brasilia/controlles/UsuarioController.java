@@ -1,12 +1,19 @@
 package api.prueba.brasilia.controlles;
 
+import api.prueba.brasilia.constants.AppConstants;
 import api.prueba.brasilia.dto.usuario.UsuarioCrearDto;
 import api.prueba.brasilia.dto.usuario.UsuarioListarDto;
 import api.prueba.brasilia.service.UsuarioService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
@@ -18,23 +25,23 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public List<UsuarioListarDto> listarUsuarios() {
-        return usuarioRepository.listarUsuarios();
+    public ResponseEntity<List<UsuarioListarDto>> listarUsuarios() {
+        return new ResponseEntity<>(usuarioRepository.listarUsuarios(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public UsuarioListarDto buscarUsuarioPorId(@PathVariable Long id) {
-        return usuarioRepository.buscarUsuarioPorId(id);
+    public ResponseEntity<UsuarioListarDto> buscarUsuarioPorId(@NotNull(message = AppConstants.PROPIEDAD_REQUERIDA) @PathVariable Long id) {
+        return new ResponseEntity<>(usuarioRepository.buscarUsuarioPorId(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public UsuarioListarDto guardarUsuario(@RequestBody UsuarioCrearDto usuario) {
-        return usuarioRepository.guardarUsuario(usuario);
+    public ResponseEntity<UsuarioListarDto> guardarUsuario(@Valid @RequestBody UsuarioCrearDto usuario) {
+        return new ResponseEntity<>(usuarioRepository.guardarUsuario(usuario), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public boolean elminarUsuario(@PathVariable Long id) {
-        return usuarioRepository.elminarUsuario(id);
+    public ResponseEntity<Boolean> elminarUsuario(@NotNull(message = AppConstants.PROPIEDAD_REQUERIDA) @PathVariable Long id) {
+        return new ResponseEntity<>(usuarioRepository.elminarUsuario(id), HttpStatus.OK);
     }
     
 }

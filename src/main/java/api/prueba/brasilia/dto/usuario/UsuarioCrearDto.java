@@ -1,11 +1,14 @@
 package api.prueba.brasilia.dto.usuario;
 
-import lombok.Getter;
-import lombok.Setter;
+import api.prueba.brasilia.constants.AppConstants;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class UsuarioCrearDto {
-    public String Id;
+
+    @NotNull(message = AppConstants.PROPIEDAD_REQUERIDA)
+    @Size(min = 2, max = 100, message = AppConstants.LONGITUD_MIN_MAX)
     public String NombreUsuario;
 }
