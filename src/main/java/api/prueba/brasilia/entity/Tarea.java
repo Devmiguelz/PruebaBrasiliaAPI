@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "Tarea")
 @Data
@@ -24,4 +26,10 @@ public class Tarea {
     @ManyToOne
     @JoinColumn(name = "UsuarioId", foreignKey = @ForeignKey(name = "FK_TAREA_USUARIO"))
     private Usuario Usuario;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date CreatedAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date UpdatedAt;
 }

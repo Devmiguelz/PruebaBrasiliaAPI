@@ -1,8 +1,8 @@
 package api.prueba.brasilia.controlles;
 
-import api.prueba.brasilia.entity.Usuario;
+import api.prueba.brasilia.dto.usuario.UsuarioCrearDto;
+import api.prueba.brasilia.dto.usuario.UsuarioListarDto;
 import api.prueba.brasilia.service.UsuarioService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,27 +11,30 @@ import java.util.List;
 @RequestMapping("/usuario")
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioService usuarioRepository;
+    private final UsuarioService usuarioRepository;
+
+    public UsuarioController(UsuarioService usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
 
     @GetMapping
-    public List<Usuario> listarUsuarios() {
+    public List<UsuarioListarDto> listarUsuarios() {
         return usuarioRepository.listarUsuarios();
     }
 
     @GetMapping("/{id}")
-    public Usuario buscarUsuarioPorId(@PathVariable Long id) {
+    public UsuarioListarDto buscarUsuarioPorId(@PathVariable Long id) {
         return usuarioRepository.buscarUsuarioPorId(id);
     }
 
     @PostMapping
-    public Usuario guardarUsuario(@RequestBody Usuario usuario) {
+    public UsuarioListarDto guardarUsuario(@RequestBody UsuarioCrearDto usuario) {
         return usuarioRepository.guardarUsuario(usuario);
     }
 
     @DeleteMapping("/{id}")
-    public void elminarUsuario(@PathVariable Long id) {
-        usuarioRepository.elminarUsuario(id);
+    public boolean elminarUsuario(@PathVariable Long id) {
+        return usuarioRepository.elminarUsuario(id);
     }
     
 }

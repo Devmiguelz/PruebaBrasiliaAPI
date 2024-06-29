@@ -1,5 +1,7 @@
 package api.prueba.brasilia;
 
+import api.prueba.brasilia.dto.usuario.UsuarioCrearDto;
+import api.prueba.brasilia.dto.usuario.UsuarioListarDto;
 import api.prueba.brasilia.entity.Usuario;
 import api.prueba.brasilia.repository.UsuarioRepository;
 import api.prueba.brasilia.service.UsuarioService;
@@ -30,13 +32,12 @@ public class UsuarioServiceTest {
 
     @Test
     public void testGuardarUsuario() {
-        Usuario usuario = new Usuario();
-        usuario.setId(1L);
+        UsuarioCrearDto usuario = new UsuarioCrearDto();
         usuario.setNombreUsuario("Usuario test");
 
-        Mockito.when(usuarioRepository.save(Mockito.any(Usuario.class))).thenReturn(usuario);
+        //Mockito.when(usuarioRepository.save(Mockito.any(Usuario.class))).thenReturn(usuario);
 
-        Usuario usuarioGuardado = usuarioService.guardarUsuario(usuario);
+        UsuarioListarDto usuarioGuardado = usuarioService.guardarUsuario(usuario);
 
         Assertions.assertEquals(usuario.getId(), usuarioGuardado.getId());
         Assertions.assertEquals(usuario.getNombreUsuario(), usuarioGuardado.getNombreUsuario());

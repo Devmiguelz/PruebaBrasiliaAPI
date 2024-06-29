@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,4 +24,7 @@ public class Usuario {
 
     @OneToMany(mappedBy = "Usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Tarea> Tareas = new ArrayList<>();
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date CreatedAt;
 }

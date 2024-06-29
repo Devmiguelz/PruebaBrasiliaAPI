@@ -1,39 +1,53 @@
 package api.prueba.brasilia.service;
 
-import api.prueba.brasilia.entity.Tarea;
+import api.prueba.brasilia.dto.usuario.UsuarioCrearDto;
+import api.prueba.brasilia.dto.usuario.UsuarioListarDto;
 import api.prueba.brasilia.entity.Usuario;
 import api.prueba.brasilia.exception.RecursoNoEncontrado;
+import api.prueba.brasilia.mapper.UsuarioMapper;
 import api.prueba.brasilia.repository.UsuarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class UsuarioService {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final UsuarioMapper usuarioMapper;
 
-    public Usuario guardarUsuario(Usuario user) {
-        return usuarioRepository.save(user);
+    public UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper) {
+        this.usuarioRepository = usuarioRepository;
+        this.usuarioMapper = usuarioMapper;
     }
 
-    public List<Usuario> listarUsuarios() {
-        return usuarioRepository.findAll();
+    public UsuarioListarDto guardarUsuario(UsuarioCrearDto usuarioDto) {
+        Usuario usuario = usuarioMapper.ToEntidad(usuarioDto);
+        usuario.setCreatedAt(new Date());
+        return usuarioMapper.ToDto(usuarioRepository.save(usuario));
     }
 
-    public Usuario buscarUsuarioPorId(Long id) {
-        return usuarioRepository.findById(id)
-                .orElseThrow(() -> new RecursoNoEncontrado("Usuario no encontrado."));
+    public List<UsuarioListarDto> listarUsuarios() {
+        return usuarioMapper.ToDtoList(usuarioRepository.findAll());
     }
 
-    public void elminarUsuario(Long id) {
+    public UsuarioListarDto buscarUsuarioPorId(Long id) {
+        Usuario usuario = getUsuarioById(id);
+        return usuarioMapper.ToDto(usuario);
+    }
+
+    public boolean elminarUsuario(Long id) {
+        Usuario usuario = getUsuarioById(id);
+        usuarioRepository.deleteById(usuario.getId());
+        return true;
+    }
+
+    private Usuario getUsuarioById(Long id) {
         Usuario usuario = usuarioRepository.findById(id).orElse(null);
         if (usuario == null) {
             throw new RecursoNoEncontrado("Usuario no encontrado.");
         }
-        usuarioRepository.deleteById(id);
+        return usuario;
     }
-
 }
