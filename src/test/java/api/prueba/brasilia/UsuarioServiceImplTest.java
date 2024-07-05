@@ -3,7 +3,7 @@ package api.prueba.brasilia;
 import api.prueba.brasilia.dto.usuario.UsuarioCrearDto;
 import api.prueba.brasilia.dto.usuario.UsuarioListarDto;
 import api.prueba.brasilia.entity.Usuario;
-import api.prueba.brasilia.mapper.UsuarioMapper;
+import api.prueba.brasilia.dto.mapper.UsuarioMapper;
 import api.prueba.brasilia.repository.UsuarioRepository;
 import api.prueba.brasilia.service.UsuarioService;
 import org.junit.jupiter.api.Assertions;
@@ -14,7 +14,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-public class UsuarioServiceTest {
+public class UsuarioServiceImplTest {
 
     @Mock
     private UsuarioRepository usuarioRepository;

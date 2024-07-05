@@ -1,4 +1,4 @@
-package api.prueba.brasilia.mapper;
+package api.prueba.brasilia.dto.mapper;
 
 import api.prueba.brasilia.dto.tarea.TareaCrearDto;
 import api.prueba.brasilia.dto.tarea.TareaListarDto;

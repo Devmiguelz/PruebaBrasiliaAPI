@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -12,5 +13,8 @@ import java.util.List;
 public class UsuarioListarDto {
     private Long Id;
     private String NombreUsuario;
+    private String email;
+    private String role;
+    private Date CreatedAt;
     private List<TareaListarDto> Tareas = new ArrayList<>();
 }
