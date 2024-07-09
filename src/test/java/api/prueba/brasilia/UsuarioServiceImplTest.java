@@ -5,6 +5,7 @@ import api.prueba.brasilia.dto.usuario.UsuarioListarDto;
 import api.prueba.brasilia.entity.Usuario;
 import api.prueba.brasilia.dto.mapper.UsuarioMapper;
 import api.prueba.brasilia.repository.UsuarioRepository;
+import api.prueba.brasilia.service.Impl.UsuarioServiceImpl;
 import api.prueba.brasilia.service.UsuarioService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class UsuarioServiceImplTest {
 
@@ -23,7 +25,10 @@ public class UsuarioServiceImplTest {
     private UsuarioMapper usuarioMapper;
 
     @InjectMocks
-    private UsuarioService usuarioService;
+    private UsuarioServiceImpl usuarioService;
+
+    @Mock
+    private PasswordEncoder passwordEncoder;
 
     @BeforeEach
     public void setUp() {
@@ -43,6 +48,7 @@ public class UsuarioServiceImplTest {
         usuarioListarDto.setId(1L);
         usuarioListarDto.setNombreUsuario("Usuario test");
 
+        Mockito.when(passwordEncoder.encode(Mockito.any(CharSequence.class))).thenReturn("hashedPassword");
         Mockito.when(usuarioMapper.ToEntidad(Mockito.any(UsuarioCrearDto.class))).thenReturn(usuario);
         Mockito.when(usuarioRepository.save(Mockito.any(Usuario.class))).thenReturn(usuario);
         Mockito.when(usuarioMapper.ToDto(Mockito.any(Usuario.class))).thenReturn(usuarioListarDto);
