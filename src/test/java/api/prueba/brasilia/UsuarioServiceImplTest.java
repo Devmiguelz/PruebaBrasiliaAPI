@@ -6,7 +6,6 @@ import api.prueba.brasilia.entity.Usuario;
 import api.prueba.brasilia.dto.mapper.UsuarioMapper;
 import api.prueba.brasilia.repository.UsuarioRepository;
 import api.prueba.brasilia.service.Impl.UsuarioServiceImpl;
-import api.prueba.brasilia.service.UsuarioService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +15,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-public class UsuarioServiceImplTest {
+class UsuarioServiceImplTest {
 
     @Mock
     private UsuarioRepository usuarioRepository;
@@ -36,7 +35,7 @@ public class UsuarioServiceImplTest {
     }
 
     @Test
-    public void testGuardarUsuario() {
+    void testGuardarUsuario() {
         UsuarioCrearDto usuarioDto = new UsuarioCrearDto();
         usuarioDto.setNombreUsuario("Usuario test");
 
